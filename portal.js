@@ -991,6 +991,15 @@
   const btnCloseAdDeck = document.getElementById('btn-close-ad-deck');
   const btnInquireSponsor = document.getElementById('btn-inquire-sponsor');
 
+  // 4 Seasons Modal Controls
+  const btnOpenSeasons = document.getElementById('btn-open-seasons');
+  const btnChipSeasons = document.getElementById('btn-chip-seasons');
+  const seasonsModal = document.getElementById('seasons-modal');
+  const btnCloseSeasons = document.getElementById('btn-close-seasons');
+  const btnInquireSeasons = document.getElementById('btn-inquire-seasons');
+  const seasonTabBtns = document.querySelectorAll('.season-tab-btn');
+  const seasonPanels = document.querySelectorAll('.season-panel');
+
   const svgHost = document.getElementById('svg-host');
   const drawer = document.getElementById('heritage-drawer');
   const drawerCategory = document.getElementById('drawer-category');
@@ -1115,6 +1124,42 @@
       adDeckModal.style.display = 'none';
       adDeckModal.setAttribute('aria-hidden', 'true');
     }
+  }
+
+  function openSeasonsModal(defaultSeason) {
+    if (seasonsModal) {
+      seasonsModal.style.display = 'flex';
+      seasonsModal.setAttribute('aria-hidden', 'false');
+      if (defaultSeason) {
+        switchSeasonTab(defaultSeason);
+      }
+    }
+  }
+
+  function closeSeasonsModal() {
+    if (seasonsModal) {
+      seasonsModal.style.display = 'none';
+      seasonsModal.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function switchSeasonTab(seasonKey) {
+    seasonTabBtns.forEach(btn => {
+      if (btn.dataset.season === seasonKey) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      }
+    });
+    seasonPanels.forEach(p => {
+      if (p.id === `panel-season-${seasonKey}`) {
+        p.style.display = 'block';
+      } else {
+        p.style.display = 'none';
+      }
+    });
   }
 
   // ----------------------------------------------------------
@@ -1599,6 +1644,38 @@
     });
   }
 
+  // 4 Seasons Modal Event Listeners
+  if (btnOpenSeasons) {
+    btnOpenSeasons.addEventListener('click', () => openSeasonsModal('spring'));
+  }
+  if (btnChipSeasons) {
+    btnChipSeasons.addEventListener('click', () => openSeasonsModal('spring'));
+  }
+  if (btnCloseSeasons) {
+    btnCloseSeasons.addEventListener('click', closeSeasonsModal);
+  }
+  if (seasonsModal) {
+    seasonsModal.addEventListener('click', (e) => {
+      if (e.target === seasonsModal) closeSeasonsModal();
+    });
+  }
+  seasonTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      switchSeasonTab(btn.dataset.season);
+    });
+  });
+  if (btnInquireSeasons) {
+    btnInquireSeasons.addEventListener('click', () => {
+      closeSeasonsModal();
+      openChat();
+      const chatInput = document.getElementById('chat-text-input');
+      if (chatInput) {
+        chatInput.value = `Chief, let's discuss 4-season programming and the winterization strategy for Eastside Park & Carl Precht RV Park.`;
+        chatInput.focus();
+      }
+    });
+  }
+
   // Tier selection buttons inside Ad Deck
   document.querySelectorAll('.tier-select-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1950,6 +2027,8 @@
         reply = `${reviewerName}, Downtown Omak is right across the Central Avenue Bridge (a 3-minute walk west)! Highlighting Breadline Cafe (scratch bakery), Mirage Theater (Art Deco cinema), Magoo's Diner, and El Patron Mexican drives tournament spectators directly into downtown businesses.`;
       } else if (lower.includes('rv') || lower.includes('precht')) {
         reply = `The Carl Precht Memorial RV Park (brown border) offers 68 full-hookup sites under mature Catalpa trees along the quiet river loop east of the arena. Dedicated to pioneer educator Carl Precht.`;
+      } else if (lower.includes('season') || lower.includes('winter') || lower.includes('summer') || lower.includes('spring') || lower.includes('fall') || lower.includes('loup') || lower.includes('freeze')) {
+        reply = `Hello ${reviewerName}! Our research establishes Eastside Park as a 365-day civic campus across all 4 seasons:\n\n• 🌸 Spring: High freshet river runoff, Carl Precht RV de-winterization on April 1, Little League parade & NCW soccer.\n• ☀️ Summer: Omak Stampede (30k+ visitors), Suicide Race, daily municipal pool, river tubing & farmers market.\n• 🍂 Fall: District 6 mule deer hunter headquarters, apple harvest/cider festival, irrigation blowout in late Oct.\n• ❄️ Winter: Low-elevation basecamp for Loup Loup Ski Bowl, community refrigerated ice rink/hockey under 365nm UV lighting, and 2075 geothermal heated RV pedestals operating at -20°F.\n\nClick the "❄️ 4 Seasons" button in the HUD to review the complete matrix!`;
       } else {
         reply = `Thank you, ${reviewerName}! Chief here. I have logged your feedback into the Project Reviewer Dossier for John and the team. You can inspect any of our 12 map styles by clicking the top switcher ribbon.`;
         localComments.unshift({

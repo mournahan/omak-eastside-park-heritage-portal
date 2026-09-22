@@ -2082,6 +2082,267 @@ body {
   font-weight: 600;
 }
 
+/* ============================================================
+   4 SEASONS OF OMAK MODAL & OPERATIONS MATRIX
+   ============================================================ */
+.seasons-card {
+  max-width: 1080px !important;
+  width: 95% !important;
+  background: #09131e !important;
+  border: 2px solid #10b981 !important;
+  color: #f8fafc;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(16, 185, 129, 0.25) !important;
+}
+
+.seasons-modal-header {
+  border-bottom: 1px solid rgba(16, 185, 129, 0.25) !important;
+  padding-bottom: 14px;
+}
+
+.seasons-top-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  color: #6ee7b7;
+  text-transform: uppercase;
+}
+
+.seasons-subtitle {
+  font-size: 12.5px;
+  color: #94a3b8;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.seasons-nav-ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 14px 24px;
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.season-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.season-tab-btn:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.season-tab-btn.active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(6, 78, 59, 0.45));
+  border-color: #10b981;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.season-tab-btn .tab-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.season-tab-btn .tab-text strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.season-tab-btn .tab-text small {
+  display: block;
+  font-size: 10.5px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.season-tab-btn.active .tab-text small {
+  color: #a7f3d0;
+}
+
+.seasons-modal-content {
+  padding: 20px 24px !important;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.season-panel {
+  animation: fadeInPanel 0.3s ease;
+}
+
+@keyframes fadeInPanel {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.season-metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.season-metrics-bar .s-metric {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.season-metrics-bar.spring-metrics .m-val { color: #34d399; }
+.season-metrics-bar.summer-metrics .m-val { color: #fbbf24; }
+.season-metrics-bar.fall-metrics .m-val { color: #fb923c; }
+.season-metrics-bar.winter-metrics .m-val { color: #38bdf8; }
+
+.s-metric .m-val {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.s-metric .m-lbl {
+  display: block;
+  font-size: 10.5px;
+  color: #94a3b8;
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+.season-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.season-col {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.season-col h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+}
+
+.season-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.season-feature-list li {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  padding-left: 14px;
+  position: relative;
+}
+
+.season-feature-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #10b981;
+}
+
+.season-innovation-box {
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  border: 1px solid;
+}
+
+.season-innovation-box.spring-box {
+  background: linear-gradient(135deg, rgba(6, 78, 59, 0.4), rgba(15, 23, 42, 0.8));
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.season-innovation-box.summer-box {
+  background: linear-gradient(135deg, rgba(120, 53, 15, 0.4), rgba(15, 23, 42, 0.8));
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.season-innovation-box.fall-box {
+  background: linear-gradient(135deg, rgba(124, 45, 18, 0.4), rgba(15, 23, 42, 0.8));
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.season-innovation-box.winter-box {
+  background: linear-gradient(135deg, rgba(12, 74, 110, 0.45), rgba(15, 23, 42, 0.8));
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.season-innovation-box h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.season-innovation-box p {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.seasons-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: rgba(15, 23, 42, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.seasons-modal-footer code {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+@media (max-width: 860px) {
+  .seasons-nav-ribbon {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .season-metrics-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .season-two-col {
+    grid-template-columns: 1fr;
+  }
+  .seasons-modal-footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
 @media print {
   #masthead, .map-hud, #swarm-chat-drawer, #btn-switch-reviewer, #uv-overhead-fixture {
     display: none !important;

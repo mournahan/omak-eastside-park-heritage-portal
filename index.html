@@ -68,6 +68,7 @@
     <div class="filter-strip" role="toolbar" aria-label="Filter Park Features">
       <button class="filter-chip active" data-filter="all">★ All Features</button>
       <button class="filter-chip highlight-chip" data-filter="future-2075" style="border-color: #38bdf8; color: #7dd3fc; background: rgba(56, 189, 248, 0.15);">📐 2075 Vision (6)</button>
+      <button class="filter-chip highlight-chip" data-filter="seasons" id="btn-chip-seasons" style="border-color: #10b981; color: #a7f3d0; background: rgba(16, 185, 129, 0.2); font-weight: 700;">❄️🌸☀️🍂 4 Seasons of Omak</button>
       <button class="filter-chip highlight-chip" data-filter="downtown">🏢 Downtown &amp; Highways (10)</button>
       <button class="filter-chip" data-filter="ballfields">⚾ Ballfields &amp; Softball (7)</button>
       <button class="filter-chip" data-filter="soccer">⚽ Soccer Complex (4)</button>
@@ -91,6 +92,7 @@
           <button id="btn-flat-mat-print" class="btn-hud-tool" title="Print / Roll Out 2075 Tabletop Blueprint" style="border-color: #38bdf8; color: #7dd3fc; font-weight: 700;">📐 Blueprint</button>
           <button id="btn-toggle-uv" class="btn-hud-tool uv-hud-btn" title="Toggle 365nm UV Blacklight Overhead Fixture" style="border-color: #a855f7; color: #d8b4fe; font-weight: 700; background: rgba(168, 85, 247, 0.15);">🟣 UV Blacklight [OFF]</button>
           <button id="btn-open-ad-deck" class="btn-hud-tool ad-hud-btn" title="View Commercial Advertising &amp; Sponsorship Deck" style="border-color: #eab308; color: #fef08a; font-weight: 700; background: rgba(234, 179, 8, 0.15);">📢 Ad Deck &amp; Rate Card</button>
+          <button id="btn-open-seasons" class="btn-hud-tool seasons-hud-btn" title="4-Season Operations Matrix &amp; Year-Round Community Uses" style="border-color: #10b981; color: #6ee7b7; font-weight: 800; background: rgba(16, 185, 129, 0.2); box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);">❄️ 4 Seasons</button>
         </div>
         <div class="hud-center-info">
           <div class="active-style-badge" id="active-style-badge">
@@ -596,6 +598,216 @@
               <span>📍 City of Omak City Hall · 2 N Main St, Omak, WA 98841</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: The 4 Seasons of Omak Municipal Operations & 2075 Year-Round Recreation -->
+  <div id="seasons-modal" class="modal-backdrop" aria-hidden="true" style="display: none;">
+    <div class="modal-card seasons-card" role="dialog" aria-labelledby="modal-seasons-title">
+      <div class="modal-header seasons-modal-header">
+        <div>
+          <span class="seasons-top-tag">OMAK 50-YEAR CIVIC STRATEGY · 2026–2075</span>
+          <h2 id="modal-seasons-title" class="font-serif">❄️🌸☀️🍂 The 4 Seasons of Omak: Eastside Park Year-Round Operations</h2>
+          <p class="seasons-subtitle">Engineered for 1960–1990 civic operators: Transforming seasonal downtime into a continuous 365-day municipal economic engine.</p>
+        </div>
+        <button class="modal-close-btn" id="btn-close-seasons">✕</button>
+      </div>
+
+      <div class="seasons-nav-ribbon" role="tablist">
+        <button class="season-tab-btn active" data-season="spring" id="tab-season-spring" role="tab" aria-selected="true">
+          <span class="tab-icon">🌸</span>
+          <span class="tab-text">
+            <strong>Spring (Mar–May)</strong>
+            <small>Freshet &amp; Opening Day</small>
+          </span>
+        </button>
+        <button class="season-tab-btn" data-season="summer" id="tab-season-summer" role="tab" aria-selected="false">
+          <span class="tab-icon">☀️</span>
+          <span class="tab-text">
+            <strong>Summer (Jun–Aug)</strong>
+            <small>Stampede &amp; High Heat</small>
+          </span>
+        </button>
+        <button class="season-tab-btn" data-season="fall" id="tab-season-fall" role="tab" aria-selected="false">
+          <span class="tab-icon">🍂</span>
+          <span class="tab-text">
+            <strong>Fall (Sep–Nov)</strong>
+            <small>Harvest &amp; Hunter Staging</small>
+          </span>
+        </button>
+        <button class="season-tab-btn" data-season="winter" id="tab-season-winter" role="tab" aria-selected="false">
+          <span class="tab-icon">❄️</span>
+          <span class="tab-text">
+            <strong>Winter (Dec–Feb)</strong>
+            <small>Loup Basecamp &amp; Ice Arena</small>
+          </span>
+        </button>
+      </div>
+
+      <div class="modal-content seasons-modal-content">
+        <!-- SPRING PANEL -->
+        <div class="season-panel active" id="panel-season-spring" role="tabpanel">
+          <div class="season-metrics-bar spring-metrics">
+            <div class="s-metric"><span class="m-val">28°F – 74°F</span><span class="m-lbl">Spring Temperatures</span></div>
+            <div class="s-metric"><span class="m-val">12,000+ CFS</span><span class="m-lbl">River Spring Freshet</span></div>
+            <div class="s-metric"><span class="m-val">April 1st</span><span class="m-lbl">Carl Precht RV De-Winterize</span></div>
+            <div class="s-metric"><span class="m-val">Opening Day</span><span class="m-lbl">Little League &amp; NCW Soccer</span></div>
+          </div>
+
+          <div class="season-two-col">
+            <div class="season-col">
+              <h3>🏟️ Active Facilities &amp; Public Works</h3>
+              <ul class="season-feature-list">
+                <li><strong>Carl Precht RV Park:</strong> Systems repressurized on April 1st; water mains tested and 68 full-hookup sites activated for spring tourists and snowbird migrations.</li>
+                <li><strong>Youth Diamonds (Joe Robbins &amp; John Pock):</strong> Infield conditioning, batting cage netting re-hung, Little League Majors/Minors opening jamborees.</li>
+                <li><strong>Tournament Fields (Ross McCormick &amp; Jack Rowe):</strong> High school Pioneers varsity baseball and fastpitch tournament hosting.</li>
+                <li><strong>NCW United Soccer Complex:</strong> 4 regulation grass pitches host regional spring cups drawing teams from Wenatchee, Chelan, and Brewster.</li>
+                <li><strong>River Levee Trail:</strong> Cleared of winter debris for community walking, jogging, and river watch during peak runoff.</li>
+              </ul>
+            </div>
+
+            <div class="season-col">
+              <h3>🎉 Community Events &amp; Downtown Multiplier</h3>
+              <ul class="season-feature-list">
+                <li><strong>Little League Opening Parade:</strong> 300+ youth athletes march across the Central Avenue Bridge from downtown Omak to Eastside Park.</li>
+                <li><strong>Spring Blossom 5K/10K:</strong> Community run winding through riverbank cottonwoods during orchard bloom.</li>
+                <li><strong>Colville First Foods Gathering:</strong> Tribal cultural heritage exchange and root-gathering educational days on encampment grounds.</li>
+                <li><strong>Downtown Business Synergy:</strong> Tournament families buy lunches at <em>Breadline Cafe</em>, celebrate victories at <em>El Patron</em>, and purchase sports gear at <em>Omak Feed &amp; Supply</em>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="season-innovation-box spring-box">
+            <h4>📐 2075 Generational Innovation: Hydrological Bioswales &amp; All-Weather Infields</h4>
+            <p>Engineered river-rock bioswales absorb high-water river backflow without washing out park turf. Synthetic turf infields on Jack Rowe Field allow tournament play to proceed without rain delays, preventing thousands of dollars in lost weekend lodging revenue.</p>
+          </div>
+        </div>
+
+        <!-- SUMMER PANEL -->
+        <div class="season-panel" id="panel-season-summer" role="tabpanel" style="display: none;">
+          <div class="season-metrics-bar summer-metrics">
+            <div class="s-metric"><span class="m-val">88°F – 105°F+</span><span class="m-lbl">Peak Desert Heat</span></div>
+            <div class="s-metric"><span class="m-val">30,000+</span><span class="m-lbl">Stampede Attendees</span></div>
+            <div class="s-metric"><span class="m-val">100% Full</span><span class="m-lbl">RV Park &amp; Hotel Capacity</span></div>
+            <div class="s-metric"><span class="m-val">Daily 7-Days</span><span class="m-lbl">Municipal Pool Open</span></div>
+          </div>
+
+          <div class="season-two-col">
+            <div class="season-col">
+              <h3>🏟️ Active Facilities &amp; Public Works</h3>
+              <ul class="season-feature-list">
+                <li><strong>The Omak Stampede Arena:</strong> Pro Rodeo arena dirt conditioning, stock pen repairs, Suicide Hill course safety inspections, and high-lumen lighting checks.</li>
+                <li><strong>Municipal Swimming Pool:</strong> Open daily June–August for public swim, Omak Manta Rays swim team meets, and evening party rentals.</li>
+                <li><strong>Carl Precht RV Park:</strong> Sold out a year in advance for Stampede week; continuous 100% capacity throughout July and August.</li>
+                <li><strong>Boat Ramp &amp; Riverbank:</strong> Peak river tubing, kayak, and stand-up paddleboard takeout point for floats originating upriver.</li>
+                <li><strong>Dog Park, Tennis &amp; Skatepark:</strong> High early-morning and twilight usage as residents avoid midday 100°F sun.</li>
+              </ul>
+            </div>
+
+            <div class="season-col">
+              <h3>🎉 Community Events &amp; Downtown Multiplier</h3>
+              <ul class="season-feature-list">
+                <li><strong>The 92nd+ Omak Stampede (2nd Weekend of August):</strong> 4 days of PRCA rodeo, the world-famous Suicide Race, Western carnival, and street dances.</li>
+                <li><strong>Colville Indian Encampment:</strong> Traditional tipis, authentic drumming, stick games, Indian trade fair, and intertribal pow wow on the park loop.</li>
+                <li><strong>Omak Farmers Market:</strong> Tuesdays &amp; Saturdays near the Visitor Center with Okanogan cherries, peaches, and artisanal goods.</li>
+                <li><strong>Downtown Business Synergy:</strong> 100% hotel room occupancy at <em>Peppertree Inn</em> and <em>Best Western</em>; packed dining rooms across downtown Omak.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="season-innovation-box summer-box">
+            <h4>📐 2075 Generational Innovation: Solar Thermal Refuge &amp; 365nm Night Activation</h4>
+            <p>Clean Okanogan PUD-powered heavy timber pergolas equipped with micro-misting cooling stations drop ambient temperatures 25°F along walking paths. The Dance Pavilion provides HEPA-filtered clean air refuge during wildfire smoke periods, while 365nm UV blacklight lighting allows safe, cool evening sports after sunset.</p>
+          </div>
+        </div>
+
+        <!-- FALL PANEL -->
+        <div class="season-panel" id="panel-season-fall" role="tabpanel" style="display: none;">
+          <div class="season-metrics-bar fall-metrics">
+            <div class="s-metric"><span class="m-val">24°F – 75°F</span><span class="m-lbl">Crisp Autumn Air</span></div>
+            <div class="s-metric"><span class="m-val">District 6</span><span class="m-lbl">Mule Deer Hunter Hub</span></div>
+            <div class="s-metric"><span class="m-val">Late Oct</span><span class="m-lbl">Irrigation Line Blowout</span></div>
+            <div class="s-metric"><span class="m-val">Golden Glow</span><span class="m-lbl">River Foliage &amp; Apples</span></div>
+          </div>
+
+          <div class="season-two-col">
+            <div class="season-col">
+              <h3>🏟️ Active Facilities &amp; Public Works</h3>
+              <ul class="season-feature-list">
+                <li><strong>Hunter Staging Headquarters:</strong> Carl Precht RV Park transforms into the central basecamp for hundreds of mule deer hunters in GMU District 6.</li>
+                <li><strong>Athletic Fields &amp; Soccer:</strong> NCW United fall league championships, high school cross-country invitationals along the river trail.</li>
+                <li><strong>Okanogan County Fair Synergy (September):</strong> Overflow camping, equestrian layover, and shuttle staging for the annual county fair.</li>
+                <li><strong>Municipal Pool:</strong> Drained and winterized immediately after Labor Day weekend.</li>
+                <li><strong>Public Works Winter Prep (Late Oct):</strong> Industrial air compressors blow out miles of underground sprinkler lines before ground freeze.</li>
+              </ul>
+            </div>
+
+            <div class="season-col">
+              <h3>🎉 Community Events &amp; Downtown Multiplier</h3>
+              <ul class="season-feature-list">
+                <li><strong>Apple Harvest &amp; Cider Festival:</strong> Antique cider press demonstrations, pie-baking contests, and heirloom apple tastings celebrating Omak's orchard legacy.</li>
+                <li><strong>Autumn River Foliage Walk &amp; 5K:</strong> Scenic races under golden riverside cottonwoods.</li>
+                <li><strong>Adult Co-Ed Softball Tournaments:</strong> Crisp weekend tournaments filling local motels and dining spots.</li>
+                <li><strong>Downtown Business Synergy:</strong> Sportsmen purchase tags, ammo, and cold-weather gear at <em>Omak Feed &amp; Supply</em>; diners pack <em>Magoo's Diner</em> for 5:00 AM breakfast before heading up mountain ridges.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="season-innovation-box fall-box">
+            <h4>📐 2075 Generational Innovation: Sportsman Game Lockers &amp; Turf Recovery</h4>
+            <p>Sanitary, secure refrigerated game lockers and wash stations at the rear of the RV park make Eastside Park the premier ethical hunting camp in the Pacific Northwest. Automated thermal sod blankets and turf aeration accelerate grass recovery following heavy Stampede foot-traffic.</p>
+          </div>
+        </div>
+
+        <!-- WINTER PANEL -->
+        <div class="season-panel" id="panel-season-winter" role="tabpanel" style="display: none;">
+          <div class="season-metrics-bar winter-metrics">
+            <div class="s-metric"><span class="m-val">8°F – 34°F</span><span class="m-lbl">Sub-Zero Winter Freeze</span></div>
+            <div class="s-metric"><span class="m-val">20 Miles</span><span class="m-lbl">To Loup Loup Ski Bowl</span></div>
+            <div class="s-metric"><span class="m-val">24 Heated Sites</span><span class="m-lbl">2075 Geothermal RV Pads</span></div>
+            <div class="s-metric"><span class="m-val">Groomed Trail</span><span class="m-lbl">Nordic Ski &amp; Snowshoe</span></div>
+          </div>
+
+          <div class="season-two-col">
+            <div class="season-col">
+              <h3>🏟️ Overcoming the Winter Bottleneck</h3>
+              <ul class="season-feature-list">
+                <li><strong>The Problem Today:</strong> RV water/sewer shut off to prevent freezing; pool closed; park 90% dormant December–February, losing winter revenue.</li>
+                <li><strong>2075 Geothermal Heated RV Riser Solution:</strong> Deep ground-loop circulation and heat-traced risers on 24 sites allow full-hookup RV camping down to -20°F at full $55/night winter rates.</li>
+                <li><strong>Loup Loup Alpine &amp; Nordic Basecamp:</strong> Eastside Park serves as the warm valley basecamp for skiers, vanlifers, and travel nurses, with daily shuttles to Loup Loup Pass.</li>
+                <li><strong>Groomed Riverside Nordic Trail:</strong> Public Works grooms the 0.5-mile loop for classic cross-country skiing, skate skiing, and fat-tire winter biking.</li>
+                <li><strong>Community Ice Rink &amp; Curling Arena:</strong> Multi-use covered arena converted into a refrigerated outdoor ice rink under 365nm UV blacklight evening illumination.</li>
+              </ul>
+            </div>
+
+            <div class="season-col">
+              <h3>🎉 Community Events &amp; Downtown Multiplier</h3>
+              <ul class="season-feature-list">
+                <li><strong>Omak Winter Wonderland Bazaar:</strong> Historic Dance Pavilion heated with radiant heavy timber infrared tubes for indoor farmers markets and holiday craft fairs.</li>
+                <li><strong>Okanogan River Polar Plunge &amp; Cocoa Run:</strong> Annual community charity plunge with warming barrels and cider.</li>
+                <li><strong>Youth Pond Hockey Tournament:</strong> Regional cross-ice youth tournament bringing families from north and south county.</li>
+                <li><strong>Downtown Business Synergy:</strong> Skiers and snowmobilers patronize coffee shops, winter tire service centers, the warm historic <em>Mirage Theater</em>, and downtown restaurants, keeping cash flow steady all winter long.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="season-innovation-box winter-box">
+            <h4>📐 2075 Generational Innovation: Geothermal Trace-Heating &amp; Ice Arena Engine</h4>
+            <p>Leveraging clean, cheap Okanogan PUD power and geothermal earth loops, Eastside Park becomes a winter beacon. Heated RV utility vaults eliminate seasonal shutdowns, while radiant timber pavilions and outdoor ice skating transform Omak into a premier four-season winter destination.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="seasons-modal-footer">
+        <div class="footer-left">
+          <span>📋 <strong>Full Research Dossier Available:</strong> <code>OMAK_FOUR_SEASONS_OPERATIONS.md</code></span>
+        </div>
+        <div class="footer-right">
+          <button type="button" class="action-btn" id="btn-inquire-seasons" style="background: linear-gradient(135deg, #10b981, #047857); border-color: #6ee7b7; color: #ffffff;">
+            ✉️ Submit 4-Season Feedback to Chief
+          </button>
         </div>
       </div>
     </div>
