@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Eastside Park &amp; Omak Heritage Map · City of Omak</title>
+  <meta name="description" content="Official illustrated cartography and living heritage portal for Eastside Park, Omak, Washington. Explores athletic ballfields, the Suicide Race course, and park namesakes.">
+  
+  <!-- Google Fonts: Vintage Engraved Serif & Clean UI Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Bar: Vintage Western Engraved Luxury -->
+  <header id="masthead">
+    <div class="header-inner">
+      <div class="logo-group">
+        <div class="crest-mark">
+          <span>★</span>
+        </div>
+        <div>
+          <h1 id="app-title">EASTSIDE PARK · OMAK, WA</h1>
+          <p class="subtitle" id="app-subtitle">Official Illustrated Cartography &amp; Living Heritage Portal</p>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <div class="reviewer-badge-chip" id="header-reviewer-badge" title="Active Reviewer Session">
+          <span class="badge-status-dot"></span>
+          <span class="badge-role">Reviewer:</span>
+          <span class="badge-name" id="header-reviewer-name">Sarah</span>
+          <button type="button" id="btn-switch-reviewer" class="switch-reviewer-btn" title="Switch Reviewer">Switch</button>
+        </div>
+
+        <div class="lang-switch" role="radiogroup" aria-label="Language Selector">
+          <button class="lang-btn active" data-lang="en" id="btn-lang-en">EN</button>
+          <button class="lang-btn" data-lang="es" id="btn-lang-es">ES</button>
+        </div>
+
+        <a href="trifold_brochure.html" target="_blank" class="action-btn print-btn" id="btn-open-trifold" title="Printable Tri-Fold Brochure Layout">
+          📜 <span class="btn-text">Tri-Fold Print Edition</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Map Style Options Switcher Ribbon (13 High-End Designs) -->
+    <div class="map-switcher-strip" role="radiogroup" aria-label="Select Cartographic Map Style">
+      <span class="switcher-label">🎨 13 Map Options:</span>
+      <button class="map-style-btn" data-map-id="13" id="btn-style-13" style="border-color: #38bdf8; background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(30, 58, 138, 0.45)); color: #7dd3fc; font-weight: 800; box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);">📐 ★ 13. 2075 Master Plan (Flat Mat)</button>
+      <button class="map-style-btn active" data-map-id="11" style="border-color: #fef08a; font-weight: 800;">★ 11. Satellite-Accurate (1:1)</button>
+      <button class="map-style-btn" data-map-id="12" style="border-color: #38bdf8; color: #bae6fd; font-weight: 700;">🎮 12. Roblox 3D Voxel</button>
+      <button class="map-style-btn" data-map-id="3">3. Downtown &amp; Highways</button>
+      <button class="map-style-btn" data-map-id="1">1. Sovereign Engraved</button>
+      <button class="map-style-btn" data-map-id="2">2. WPA Serigraph</button>
+      <button class="map-style-btn" data-map-id="7">7. James Niehues Trail Map</button>
+      <button class="map-style-btn" data-map-id="8">8. Colville Tribal Heritage</button>
+      <button class="map-style-btn" data-map-id="9">9. 1950s Road Trip Guide</button>
+      <button class="map-style-btn" data-map-id="4">4. Sunset Twilight Glow</button>
+      <button class="map-style-btn" data-map-id="5">5. Frontier Tooled Leather</button>
+      <button class="map-style-btn" data-map-id="6">6. 1890s Panoramic Litho</button>
+      <button class="map-style-btn" data-map-id="10">10. Architectural Blueprint</button>
+    </div>
+
+    <!-- Category Filter Ribbon -->
+    <div class="filter-strip" role="toolbar" aria-label="Filter Park Features">
+      <button class="filter-chip active" data-filter="all">★ All Features</button>
+      <button class="filter-chip highlight-chip" data-filter="future-2075" style="border-color: #38bdf8; color: #7dd3fc; background: rgba(56, 189, 248, 0.15);">📐 2075 Vision (6)</button>
+      <button class="filter-chip highlight-chip" data-filter="downtown">🏢 Downtown &amp; Highways (10)</button>
+      <button class="filter-chip" data-filter="ballfields">⚾ Ballfields &amp; Softball (7)</button>
+      <button class="filter-chip" data-filter="soccer">⚽ Soccer Complex (4)</button>
+      <button class="filter-chip" data-filter="stampede">🐎 Stampede &amp; Suicide Race</button>
+      <button class="filter-chip" data-filter="rv-culture">🏕️ RV Park &amp; Pow Wow</button>
+      <button class="filter-chip" data-filter="civic">🏛️ Civic Amenities</button>
+      <button class="filter-chip" data-filter="history">📜 Omak Economic Story</button>
+    </div>
+  </header>
+
+  <!-- Main Viewport Layout -->
+  <main id="main-viewport">
+    <!-- Map Canvas Wrapper -->
+    <section id="map-container" aria-label="Interactive Map of Eastside Park">
+      <div class="map-hud">
+        <div class="zoom-controls">
+          <button id="btn-zoom-in" aria-label="Zoom In">+</button>
+          <button id="btn-zoom-out" aria-label="Zoom Out">−</button>
+          <button id="btn-zoom-reset" aria-label="Reset View">Reset</button>
+          <button id="btn-toggle-pins" class="btn-hud-tool" title="Toggle Hotspot Pins On/Off">📍 Pins</button>
+          <button id="btn-flat-mat-print" class="btn-hud-tool" title="Print / Roll Out 2075 Tabletop Blueprint" style="border-color: #38bdf8; color: #7dd3fc; font-weight: 700;">📐 Blueprint</button>
+          <button id="btn-toggle-uv" class="btn-hud-tool uv-hud-btn" title="Toggle 365nm UV Blacklight Overhead Fixture" style="border-color: #a855f7; color: #d8b4fe; font-weight: 700; background: rgba(168, 85, 247, 0.15);">🟣 UV Blacklight [OFF]</button>
+          <button id="btn-open-ad-deck" class="btn-hud-tool ad-hud-btn" title="View Commercial Advertising &amp; Sponsorship Deck" style="border-color: #eab308; color: #fef08a; font-weight: 700; background: rgba(234, 179, 8, 0.15);">📢 Ad Deck &amp; Rate Card</button>
+        </div>
+        <div class="hud-center-info">
+          <div class="active-style-badge" id="active-style-badge">
+            <span class="style-num">STYLE 11</span>
+            <span class="style-title" id="style-title-text">Satellite-Accurate Master Survey (1:1 Match)</span>
+          </div>
+          <div class="hint-banner" id="map-hint">
+            <span>👆 Tap any downtown business, highway, or ballfield to reveal its story</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overhead Industrial 365nm Blacklight Lamp Fixture -->
+      <div id="uv-overhead-fixture" class="uv-lamp-off">
+        <div class="lamp-mount left"></div>
+        <div class="lamp-chassis">
+          <div class="lamp-tube-glow"></div>
+          <div class="lamp-tube"></div>
+          <div class="lamp-spec-badge">⚡ SYLVANIA 365nm HIGH-OUTPUT INDUSTRIAL UV FLUORESCENT FIXTURE · MODEL AGY-UV-75</div>
+        </div>
+        <div class="lamp-mount right"></div>
+        <button id="btn-lamp-switch" class="lamp-pull-switch" title="Toggle 365nm UV Blacklight Overhead Lamp">
+          <span class="switch-pull-cord"></span>
+          <span class="switch-label">BLACKLIGHT [OFF]</span>
+        </button>
+      </div>
+
+      <div id="svg-viewport-wrapper">
+        <!-- Embedded High-Resolution Master Illustrated Artwork with Interactive Vector Layer -->
+        <div id="svg-host">
+          <svg viewBox="0 0 1376 768" width="1376" height="768" id="master-interactive-canvas">
+            <!-- Master Illustrated Artwork (Swappable across 11 Options) -->
+            <image id="master-map-image" href="public/map_option_11.jpg" x="0" y="0" width="1376" height="768" preserveAspectRatio="xMidYMid slice" />
+            
+            <!-- Interactive Pulse Pins & Hotspot Layer (1:1 Satellite Ground-Truth Alignment) -->
+            <g id="interactive-overlay-pins">
+              <!-- =================================================== -->
+              <!-- EASTSIDE PARK ATHLETIC DIAMONDS & RECREATION       -->
+              <!-- =================================================== -->
+
+              <!-- 1. Joe Robbins Field (Northwest Riverbank, Pink Triangle) -->
+              <g id="field-joe-robbins" class="map-pin" transform="translate(380, 240)">
+                <rect x="-65" y="-13" width="130" height="26" rx="13" fill="#b91c1c" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="bold" fill="#ffffff">⚾ 1. JOE ROBBINS</text>
+              </g>
+
+              <!-- Omak Municipal Swimming Pool (Directly South of Joe Robbins, Blue Rectangle) -->
+              <g id="omak-pool" class="map-pin" transform="translate(360, 340)">
+                <rect x="-42" y="-13" width="84" height="26" rx="13" fill="#0284c7" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="bold" fill="#ffffff">🏊 POOL</text>
+              </g>
+
+              <!-- 2. John Pock Field (Across from the Pool in Center-West Green) -->
+              <g id="field-john-pock" class="map-pin" transform="translate(485, 330)">
+                <rect x="-60" y="-13" width="120" height="26" rx="13" fill="#b91c1c" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="bold" fill="#ffffff">⚾ 2. JOHN POCK</text>
+              </g>
+
+              <!-- Tennis & Pickleball Courts (South of Pool, Yellow Square) -->
+              <g id="tennis-courts" class="map-pin" transform="translate(485, 430)">
+                <rect x="-56" y="-13" width="112" height="26" rx="13" fill="#ca8a04" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🎾 TENNIS COURTS</text>
+              </g>
+
+              <!-- Skate Park (Directly South of Tennis Courts, Red Oval) -->
+              <g id="skate-park" class="map-pin" transform="translate(450, 485)">
+                <rect x="-48" y="-13" width="96" height="26" rx="13" fill="#334155" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🛹 SKATE PARK</text>
+              </g>
+
+              <!-- Omak Stampede Rodeo Arena (North Riverbank, Purple Polygon) -->
+              <g id="stampede-arena" class="map-pin" transform="translate(740, 215)">
+                <rect x="-72" y="-14" width="144" height="28" rx="14" fill="#7f1d1d" stroke="#f3d37a" stroke-width="2.5" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="bold" fill="#ffffff">🐎 STAMPEDE ARENA</text>
+              </g>
+
+              <!-- Suicide Hill Race Course & Plunge (Across River, North Bluff) -->
+              <g id="hotspot-suicide-hill" class="map-pin" transform="translate(730, 95)">
+                <rect x="-68" y="-13" width="136" height="26" rx="13" fill="#991b1b" stroke="#f3d37a" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="bold" fill="#ffffff">🏁 SUICIDE HILL RACE</text>
+              </g>
+
+              <!-- Carl Precht Memorial RV Park (Northeast River Loop, Brown Rectangle) -->
+              <g id="rv-carl-precht" class="map-pin" transform="translate(1080, 230)">
+                <rect x="-68" y="-13" width="136" height="26" rx="13" fill="#14532d" stroke="#f3d37a" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🏕️ CARL PRECHT RV PARK</text>
+              </g>
+
+              <!-- Colville Encampment & Pow Wow Grounds (River Grove) -->
+              <g id="colville-powwow" class="map-pin" transform="translate(900, 235)">
+                <rect x="-56" y="-13" width="112" height="26" rx="13" fill="#78350f" stroke="#f3d37a" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🪶 POW WOW ARBOR</text>
+              </g>
+
+              <!-- Historic Dance Pavilion (Southeast of RV Park, Pink Rectangle) -->
+              <g id="dance-pavilion" class="map-pin" transform="translate(1140, 360)">
+                <rect x="-60" y="-13" width="120" height="26" rx="13" fill="#831843" stroke="#f3d37a" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="bold" fill="#ffffff">🏛️ DANCE PAVILION</text>
+              </g>
+
+              <!-- 3. Ross McCormick Field (West of Pavilion, High School Varsity, Red Triangle) -->
+              <g id="field-ross-mccormick" class="map-pin" transform="translate(950, 365)">
+                <rect x="-68" y="-13" width="136" height="26" rx="13" fill="#1e3a8a" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="bold" fill="#ffffff">⚾ 3. ROSS McCORMICK</text>
+              </g>
+
+              <!-- 4. Jack Rowe Field (Tournament Multi-Use Diamond) -->
+              <g id="field-jack-rowe" class="map-pin" transform="translate(980, 465)">
+                <rect x="-60" y="-13" width="120" height="26" rx="13" fill="#1e3a8a" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">⚾ 4. JACK ROWE</text>
+              </g>
+
+              <!-- 5. Shirley Bowden Field (Fastpitch Softball, Orange Triangle) -->
+              <g id="field-shirley-bowden" class="map-pin" transform="translate(790, 490)">
+                <rect x="-65" y="-13" width="130" height="26" rx="13" fill="#831843" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="bold" fill="#ffffff">🥎 5. SHIRLEY BOWDEN</text>
+              </g>
+
+              <!-- 6. Stephanie Buchanon Field (Varsity Softball, Light Blue Triangle) -->
+              <g id="field-stephanie-buchanon" class="map-pin" transform="translate(980, 520)">
+                <rect x="-72" y="-13" width="144" height="26" rx="13" fill="#831843" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🥎 6. S. BUCHANON</text>
+              </g>
+
+              <!-- North Omak Soccer Complex (South Boundary, Large Yellow Rectangle) -->
+              <g id="soccer-complex" class="map-pin" transform="translate(1100, 650)">
+                <rect x="-82" y="-14" width="164" height="28" rx="14" fill="#064e3b" stroke="#f3d37a" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="bold" fill="#ffffff">⚽ NORTH OMAK SOCCER</text>
+              </g>
+
+              <!-- River Boat Launch (River Loop near RV Park) -->
+              <g id="boat-launch" class="map-pin" transform="translate(1270, 210)">
+                <rect x="-48" y="-13" width="96" height="26" rx="13" fill="#0f172a" stroke="#38bdf8" stroke-width="1.8" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🚤 BOAT LAUNCH</text>
+              </g>
+
+              <!-- Central Ave Bridge Crossing into Downtown -->
+              <g id="visitor-center" class="map-pin" transform="translate(240, 360)">
+                <rect x="-56" y="-13" width="112" height="26" rx="13" fill="#3e2723" stroke="#f3d37a" stroke-width="1.8" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🌉 CENTRAL BRIDGE</text>
+              </g>
+
+              <!-- =================================================== -->
+              <!-- DOWNTOWN OMAK BUSINESSES & HIGHWAY ARTERIALS (LEFT) -->
+              <!-- =================================================== -->
+              <!-- Mirage Theater (Historic Art Deco Neon Cinema) -->
+              <g id="biz-mirage-theater" class="map-pin downtown-pin" transform="translate(235, 545)">
+                <rect x="-56" y="-13" width="112" height="26" rx="13" fill="#831843" stroke="#f3d37a" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🎬 MIRAGE THEATER</text>
+              </g>
+
+              <!-- Breadline Cafe (Legendary Scratch Bakery & Cafe) -->
+              <g id="biz-breadline-cafe" class="map-pin downtown-pin" transform="translate(180, 500)">
+                <rect x="-56" y="-13" width="112" height="26" rx="13" fill="#b45309" stroke="#fef08a" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🥖 BREADLINE CAFE</text>
+              </g>
+
+              <!-- Magoo's Diner & Sports Bar -->
+              <g id="biz-magoos-diner" class="map-pin downtown-pin" transform="translate(265, 465)">
+                <rect x="-54" y="-13" width="108" height="26" rx="13" fill="#15803d" stroke="#fef08a" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🍔 MAGOO'S DINER</text>
+              </g>
+
+              <!-- El Patron Mexican Restaurant -->
+              <g id="biz-el-patron" class="map-pin downtown-pin" transform="translate(320, 495)">
+                <rect x="-48" y="-13" width="96" height="26" rx="13" fill="#b91c1c" stroke="#fef08a" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🌮 EL PATRON</text>
+              </g>
+
+              <!-- Omak Chamber & Visitor Information Center -->
+              <g id="biz-chamber-vic" class="map-pin downtown-pin" transform="translate(340, 625)">
+                <rect x="-56" y="-13" width="112" height="26" rx="13" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="bold" fill="#ffffff">ℹ️ VISITOR CENTER</text>
+              </g>
+
+              <!-- Best Western Plus Peppertree Inn (Lodging Tax Partner) -->
+              <g id="biz-peppertree-inn" class="map-pin downtown-pin" transform="translate(150, 140)">
+                <rect x="-58" y="-13" width="116" height="26" rx="13" fill="#065f46" stroke="#a7f3d0" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="bold" fill="#ffffff">🏨 PEPPERTREE INN</text>
+              </g>
+
+              <!-- Omak Inn -->
+              <g id="biz-omak-inn" class="map-pin downtown-pin" transform="translate(100, 85)">
+                <rect x="-48" y="-13" width="96" height="26" rx="13" fill="#374151" stroke="#f3d37a" stroke-width="1.8" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="bold" fill="#ffffff">🏨 OMAK INN</text>
+              </g>
+
+              <!-- 12 Tribes Colville Casino & Hotel Resort -->
+              <g id="biz-12-tribes-resort" class="map-pin downtown-pin" transform="translate(70, 695)">
+                <rect x="-58" y="-13" width="116" height="26" rx="13" fill="#4c1d95" stroke="#e9d5ff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="bold" fill="#ffffff">🎰 12 TRIBES RESORT</text>
+              </g>
+
+              <!-- Highway US-97 Corridor (Major North/South Arterial) -->
+              <g id="hwy-us97" class="map-pin downtown-pin" transform="translate(85, 190)">
+                <rect x="-50" y="-13" width="100" height="26" rx="6" fill="#111827" stroke="#ffffff" stroke-width="2" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🛣️ US-97 NORTH</text>
+              </g>
+
+              <!-- Highway SR-215 Scenic Corridor -->
+              <g id="hwy-sr215" class="map-pin downtown-pin" transform="translate(125, 290)">
+                <rect x="-46" y="-12" width="92" height="24" rx="6" fill="#1f2937" stroke="#93c5fd" stroke-width="1.8" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="bold" fill="#ffffff">🛣️ SR-215 BYPASS</text>
+              </g>
+
+              <!-- Downtown Designated Visitor Parking Plazas -->
+              <g id="downtown-parking" class="map-pin downtown-pin" transform="translate(195, 585)">
+                <rect x="-40" y="-12" width="80" height="24" rx="12" fill="#0284c7" stroke="#ffffff" stroke-width="1.8" />
+                <text x="0" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="bold" fill="#ffffff">🅿️ PARKING</text>
+              </g>
+
+              <!-- =================================================== -->
+              <!-- 2075 GENERATIONAL MASTER PLAN (TACTICAL FLAT MAT)   -->
+              <!-- =================================================== -->
+              <g id="pins-future-2075" class="style-specific-pins" style="display: none;">
+                <!-- Zone I: Stampede Amphitheater & All-Weather Arena -->
+                <g id="zone-2075-arena" class="map-pin future-pin" transform="translate(240, 240)">
+                  <rect x="-86" y="-15" width="172" height="30" rx="15" fill="#0369a1" stroke="#38bdf8" stroke-width="2.5" />
+                  <text x="0" y="5" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="bold" fill="#ffffff">🐎 2075 COVERED ARENA</text>
+                </g>
+
+                <!-- Zone II: Colville Sovereign Cultural Arbor -->
+                <g id="zone-2075-arbor" class="map-pin future-pin" transform="translate(560, 240)">
+                  <rect x="-86" y="-15" width="172" height="30" rx="15" fill="#78350f" stroke="#f59e0b" stroke-width="2.5" />
+                  <text x="0" y="5" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🪶 COLVILLE SOVEREIGN ARBOR</text>
+                </g>
+
+                <!-- Zone III: Okanogan Riverwalk Suspension Footbridge -->
+                <g id="zone-2075-footbridge" class="map-pin future-pin" transform="translate(740, 390)">
+                  <rect x="-92" y="-15" width="184" height="30" rx="15" fill="#0f766e" stroke="#2dd4bf" stroke-width="2.5" />
+                  <text x="0" y="5" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🌉 RIVERWALK SUSPENSION SPAN</text>
+                </g>
+
+                <!-- Zone IV: Clean PUD Hydro AgTech Maker Guild -->
+                <g id="zone-2075-maker" class="map-pin future-pin" transform="translate(420, 620)">
+                  <rect x="-90" y="-15" width="180" height="30" rx="15" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2.5" />
+                  <text x="0" y="5" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">⚡ CLEAN PUD AGTECH GUILD</text>
+                </g>
+
+                <!-- Zone V: Wildfire Defense & Resiliency Command Hub -->
+                <g id="zone-2075-resiliency" class="map-pin future-pin" transform="translate(680, 620)">
+                  <rect x="-90" y="-15" width="180" height="30" rx="15" fill="#991b1b" stroke="#f87171" stroke-width="2.5" />
+                  <text x="0" y="5" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🛡️ WILDFIRE RESILIENCY HUB</text>
+                </g>
+
+                <!-- Zone VI: Suicide Hill Historical Overlook & Mountain Trail -->
+                <g id="zone-2075-suicide-hill" class="map-pin future-pin" transform="translate(940, 240)">
+                  <rect x="-86" y="-15" width="172" height="30" rx="15" fill="#854d0e" stroke="#facc15" stroke-width="2.5" />
+                  <text x="0" y="5" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#ffffff">🏁 SUICIDE HILL OVERLOOK</text>
+                </g>
+
+                <!-- 4 CORNER INTERACTIVE ADVERTISING & NAVIGATION QR HUBS -->
+                <!-- Top-Left: 3D Valley Mobile Tour -->
+                <g id="qr-hud-3d" class="qr-pin-group" transform="translate(62, 60)" style="cursor: pointer;">
+                  <rect x="-42" y="-42" width="84" height="84" rx="10" fill="#0b1329" stroke="#38bdf8" stroke-width="2" />
+                  <image href="public/qr/qr_3d_valley_tour.svg" x="-32" y="-32" width="64" height="64" />
+                  <rect x="-50" y="44" width="100" height="18" rx="9" fill="#0284c7" stroke="#ffffff" stroke-width="1.2" />
+                  <text x="0" y="56" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" font-weight="bold" fill="#ffffff">📱 3D VALLEY TOUR</text>
+                </g>
+
+                <!-- Top-Right: Stampede Arena VIP Tickets -->
+                <g id="qr-hud-stampede" class="qr-pin-group" transform="translate(1314, 60)" style="cursor: pointer;">
+                  <rect x="-42" y="-42" width="84" height="84" rx="10" fill="#0b1329" stroke="#f59e0b" stroke-width="2" />
+                  <image href="public/qr/qr_stampede_arena.svg" x="-32" y="-32" width="64" height="64" />
+                  <rect x="-52" y="44" width="104" height="18" rx="9" fill="#d97706" stroke="#ffffff" stroke-width="1.2" />
+                  <text x="0" y="56" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" font-weight="bold" fill="#ffffff">🎟️ VIP TICKETS &amp; ARENA</text>
+                </g>
+
+                <!-- Bottom-Left: 2075 Generational Blueprint & Civic Whitepaper -->
+                <g id="qr-hud-blueprint" class="qr-pin-group" transform="translate(62, 695)" style="cursor: pointer;">
+                  <rect x="-42" y="-42" width="84" height="84" rx="10" fill="#0b1329" stroke="#22c55e" stroke-width="2" />
+                  <image href="public/qr/qr_2075_blueprint.svg" x="-32" y="-32" width="64" height="64" />
+                  <rect x="-52" y="-56" width="104" height="18" rx="9" fill="#15803d" stroke="#ffffff" stroke-width="1.2" />
+                  <text x="0" y="-44" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" font-weight="bold" fill="#ffffff">📄 2075 WHITEPAPER</text>
+                </g>
+
+                <!-- Bottom-Right: Commercial Advertising Rate Card -->
+                <g id="qr-hud-ratecard" class="qr-pin-group" transform="translate(1314, 695)" style="cursor: pointer;">
+                  <rect x="-42" y="-42" width="84" height="84" rx="10" fill="#0b1329" stroke="#eab308" stroke-width="2.2" />
+                  <image href="public/qr/qr_ad_ratecard.svg" x="-32" y="-32" width="64" height="64" />
+                  <rect x="-56" y="-56" width="112" height="18" rx="9" fill="#ca8a04" stroke="#ffffff" stroke-width="1.2" />
+                  <text x="0" y="-44" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" font-weight="bold" fill="#ffffff">📢 ADVERTISE ON MAT</text>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Side / Slide-Up Heritage Drawer -->
+    <aside id="heritage-drawer" class="drawer-closed" aria-labelledby="drawer-title" aria-hidden="true">
+      <div class="drawer-handle" id="drawer-toggle-bar">
+        <span class="handle-pill"></span>
+      </div>
+
+      <div class="drawer-header">
+        <span class="drawer-badge" id="drawer-category">ATHLETIC BALLFIELD</span>
+        <button class="close-drawer" id="btn-close-drawer" aria-label="Close details">✕</button>
+      </div>
+
+      <div class="drawer-body" id="drawer-content">
+        <h2 id="drawer-title" class="font-serif">Select a Field or Facility</h2>
+        <div class="drawer-meta" id="drawer-meta">
+          <span class="meta-tag" id="meta-location">Eastside Park</span>
+          <span class="meta-tag" id="meta-type">Civic Asset</span>
+        </div>
+
+        <!-- Audio Player Widget -->
+        <div class="audio-history-card" id="audio-history-card">
+          <div class="audio-info">
+            <span class="audio-icon">🎙️</span>
+            <div>
+              <div class="audio-headline" id="audio-title">45-Second Oral History</div>
+              <div class="audio-subtext" id="audio-speaker">Narrated by The Okanogan Chronicler</div>
+            </div>
+          </div>
+          <button class="audio-play-btn" id="btn-play-audio" aria-label="Play narration">
+            <span id="play-icon">▶</span> <span id="play-text">Listen (Audio)</span>
+          </button>
+        </div>
+
+        <div class="drawer-narrative">
+          <h3 class="section-label" id="label-naming">Who It's Named After &amp; History</h3>
+          <p id="drawer-bio" class="bio-text">
+            Explore the 77-acre expanse of Eastside Park. Tap on Joe Robbins Field, John Pock Field, Ross McCormick Field, Jack Rowe Field, Shirley Bowden Field, Stephanie Buchanon Field, or Carl Precht Memorial RV Park to learn about the pioneer leaders behind the names.
+          </p>
+
+          <h3 class="section-label" id="label-specs">Facility Specifications &amp; Amenities</h3>
+          <ul id="drawer-specs" class="specs-list">
+            <li><strong>Location:</strong> East of Okanogan River, Colville Indian Reservation</li>
+            <li><strong>Dedicated:</strong> City of Omak Public Recreation Facility</li>
+            <li><strong>Tournament Bookings:</strong> City of Omak (509) 826-1170</li>
+          </ul>
+
+          <!-- Commercial Advertising & Dynamic Phone QR Card -->
+          <div class="commercial-sponsor-card" id="drawer-sponsor-card">
+            <div class="sponsor-card-head">
+              <span class="sponsor-shield">⭐</span>
+              <div>
+                <span class="sponsor-tier-badge" id="sponsor-tier-badge">2075 COMMERCIAL PARTNER</span>
+                <div class="sponsor-metrics" id="sponsor-metrics">Est. 42,000+ Annual Rodeo &amp; Tourney Foot Traffic</div>
+              </div>
+            </div>
+            <div class="sponsor-qr-body">
+              <div class="sponsor-qr-wrapper">
+                <img id="sponsor-dynamic-qr" src="public/qr/qr_ad_ratecard.svg" alt="Scan QR Code" width="76" height="76">
+                <span class="qr-scan-label">Scan Phone</span>
+              </div>
+              <div class="sponsor-details">
+                <h4 id="sponsor-headline">Mobile Navigation &amp; Sponsor Perks</h4>
+                <p id="sponsor-desc">Point phone camera to scan live coupons, tournament schedules, or reserve facilities directly.</p>
+                <button type="button" class="sponsor-inquire-btn" id="btn-inquire-sponsor">📢 Sponsor This Space / Rate Card</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ltac-callout">
+            <span class="ltac-shield">🏛️</span>
+            <p>
+              <strong>Funded by Municipal Lodging Tax (RCW 67.28):</strong> Reinvesting Hotel-Motel tourism revenues directly into Omak's historic park infrastructure.
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal: The Omak Economic Transition (Mining -> Timber -> Orchard -> Tourism) -->
+  <div id="history-modal" class="modal-backdrop" aria-hidden="true" style="display: none;">
+    <div class="modal-card" role="dialog" aria-labelledby="modal-hist-title">
+      <div class="modal-header">
+        <h2 id="modal-hist-title" class="font-serif">The Evolution of Omak: 1888 to Today</h2>
+        <button class="modal-close-btn" id="btn-close-hist">✕</button>
+      </div>
+      <div class="modal-content">
+        <p class="lead-quote">
+          <em>"From the silver picks of the Okanogan Highlands to the buzzing timber saws of Biles-Coleman, to the golden rows of apple orchards—and now, the welcoming frontier of outdoor recreation, cultural heritage, and world-class tourism."</em>
+        </p>
+
+        <div class="timeline-stepper">
+          <div class="step-card">
+            <div class="step-badge">1888–1910</div>
+            <h3>1. The Mining Frontier</h3>
+            <p>Before Omak was incorporated, silver and lead rushes boomed in nearby Ruby City and Conconully. Prospectors and traders forged the very trails that became the wagon roads and river crossings of Central Washington.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-badge">1921–1970</div>
+            <h3>2. Timber &amp; The Biles-Coleman Mill</h3>
+            <p>J.C. Biles and Nate Coleman founded the monumental Biles-Coleman Lumber Company in Omak in 1921. It was one of the largest pine remanufacturing plants in the world, bringing the railroad, thousands of family jobs, and civic growth.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-badge">1930–2010</div>
+            <h3>3. World Apple &amp; Orchard Capital</h3>
+            <p>With federal irrigation projects feeding the Okanogan basin, thousands of fertile acres transformed into world-renowned Red Delicious, Golden Delicious, and cherry orchards. Packing houses and cold storage facilities lined the riverbanks.</p>
+          </div>
+
+          <div class="step-card highlight">
+            <div class="step-badge">Today &amp; Beyond</div>
+            <h3>4. Cultural &amp; Outdoor Tourism Era</h3>
+            <p>As global agricultural markets shifted, Omak embraced its true sovereign calling: a premier Pacific Northwest destination. With the legendary Omak Stampede, the Colville Indian Encampment, regional soccer/baseball invitationals, the Okanogan River, and Hotel-Motel Tax reinvestment, Omak has become the cultural heart of the valley.</p>
+          </div>
+        </div>
+
+        <div class="modal-footer-box">
+          <p><strong>Commissioned by:</strong> City of Omak Tourism &amp; Lodging Tax Advisory Committee (LTAC)</p>
+          <p><strong>Architectural &amp; Cartographic Design:</strong> Trillionaires AI</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: 2075 Commercial Advertising & Sponsorship Deck -->
+  <div id="ad-deck-modal" class="modal-backdrop" aria-hidden="true" style="display: none;">
+    <div class="modal-card ad-deck-card" role="dialog" aria-labelledby="modal-ad-title">
+      <div class="modal-header ad-deck-header">
+        <div>
+          <span class="ad-top-tag">OMAK ECONOMIC ENGINE &amp; TOURISM REINVESTMENT</span>
+          <h2 id="modal-ad-title" class="font-serif">📢 2075 Flat Mat · Commercial Advertising &amp; Sponsorship Deck</h2>
+        </div>
+        <button class="modal-close-btn" id="btn-close-ad-deck">✕</button>
+      </div>
+      <div class="modal-content ad-deck-content">
+        <p class="lead-quote">
+          <em>"Connect your business with over 52,000 annual Omak Stampede attendees, regional baseball/softball tournament families, Colville tribal pow wow visitors, and outdoor travelers on the US-97 corridor."</em>
+        </p>
+
+        <div class="ad-metrics-strip">
+          <div class="metric-box">
+            <span class="metric-num">52,000+</span>
+            <span class="metric-lbl">Annual Park &amp; Arena Foot Traffic</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num">18,500</span>
+            <span class="metric-lbl">US-97 Daily Vehicle Passes</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num">365nm</span>
+            <span class="metric-lbl">UV Fluorescent Night-Glow Visibility</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num">100%</span>
+            <span class="metric-lbl">Local Lodging Tax Reinvestment</span>
+          </div>
+        </div>
+
+        <div class="ad-tiers-grid">
+          <!-- Tier 1 -->
+          <div class="ad-tier-card premium-tier">
+            <div class="ad-tier-badge">TIER I · TITLE ANCHOR</div>
+            <h3>Valley Cornerstone Sponsor</h3>
+            <div class="tier-price">$5,000 <span>/ Annual Term</span></div>
+            <p class="tier-summary">Exclusive marquee placement for major regional employers, financial institutions, utilities, and tribal enterprises.</p>
+            <ul class="tier-perks">
+              <li>✓ <strong>Tabletop Perimeter Billboard:</strong> 8" x 3" prominent logo print on heavy-duty physical vinyl Flat Mats distributed to City Council, County Commissioners &amp; LTAC.</li>
+              <li>✓ <strong>365nm UV Phosphor Ink:</strong> Brand logo printed in luminous fluorescent ink that blazes under overhead blacklight lamps during evening planning.</li>
+              <li>✓ <strong>Interactive Portal Anchor:</strong> Dedicated SVG vector pin with gold glowing drop-shadow on interactive web map.</li>
+              <li>✓ <strong>Custom Audio Story Narration:</strong> 45-second professional brand history produced and narrated in the living digital portal.</li>
+              <li>✓ <strong>Dedicated Scannable QR Code:</strong> Custom direct link to sponsor VIP promotions, careers, or booking engine.</li>
+            </ul>
+            <button class="action-btn tier-select-btn" data-tier="Cornerstone Title ($5,000)">Inquire for Title Slot</button>
+          </div>
+
+          <!-- Tier 2 -->
+          <div class="ad-tier-card gold-tier">
+            <div class="ad-tier-badge">TIER II · ZONE PARTNER</div>
+            <h3>Facility &amp; Complex Partner</h3>
+            <div class="tier-price">$1,850 <span>/ Annual Term</span></div>
+            <p class="tier-summary">Ideal for outdoor outfitters, auto dealers, hospitality groups, and regional contractors seeking sports &amp; rodeo families.</p>
+            <ul class="tier-perks">
+              <li>✓ <strong>Zone Naming Placement:</strong> Brand integration on Stampede Arena, Soccer Complex, or Ballfields Cluster.</li>
+              <li>✓ <strong>High-Contrast Flat Mat Placement:</strong> 4" x 2" color emblem on high-res tabletop mats.</li>
+              <li>✓ <strong>Digital Pin Hotspot:</strong> Interactive badge on digital portal with phone-scannable QR promo card.</li>
+              <li>✓ <strong>Tournament Program Inclusion:</strong> Featured link on mobile tournament schedules and RV park guides.</li>
+            </ul>
+            <button class="action-btn tier-select-btn" data-tier="Zone Partner ($1,850)">Inquire for Zone Slot</button>
+          </div>
+
+          <!-- Tier 3 -->
+          <div class="ad-tier-card merchant-tier">
+            <div class="ad-tier-badge">TIER III · DOWNTOWN MERCHANT</div>
+            <h3>Main Street Merchant Pin</h3>
+            <div class="tier-price">$650 <span>/ Annual Term</span></div>
+            <p class="tier-summary">Targeted visitor acquisition for downtown Omak restaurants, retail shops, bakeries, cafes, and hotels.</p>
+            <ul class="tier-perks">
+              <li>✓ <strong>Downtown Strip Interactive Pin:</strong> Direct placement along US-97 and SR-215 downtown strip.</li>
+              <li>✓ <strong>Scannable Mobile Coupon:</strong> Dynamic QR code in digital drawer routing GPS directions and discount offers to visitors' smartphones.</li>
+              <li>✓ <strong>Directory Listing:</strong> Permanent inclusion in Tri-Fold Print Brochure and digital directory.</li>
+            </ul>
+            <button class="action-btn tier-select-btn" data-tier="Downtown Merchant ($650)">Inquire for Merchant Pin</button>
+          </div>
+        </div>
+
+        <div class="ad-booking-box">
+          <div class="booking-info">
+            <h4>Reserve Your 2075 Mat Placement</h4>
+            <p>Contact <strong>City of Omak Tourism &amp; LTAC</strong> or John Mournahan directly to confirm advertising space for the 2026–2027 season.</p>
+            <div class="booking-contacts">
+              <span>📞 (509) 826-1170</span>
+              <span>📧 tourism@omakcity.com</span>
+              <span>📍 City of Omak City Hall · 2 N Main St, Omak, WA 98841</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Secure Reviewer & Stakeholder Access Gate -->
+  <div id="auth-modal" class="modal-backdrop" aria-hidden="true" style="display: none;">
+    <div class="modal-card auth-card" role="dialog" aria-labelledby="modal-auth-title">
+      <div class="auth-header">
+        <div class="auth-crest">★</div>
+        <h2 id="modal-auth-title" class="font-serif">REVIEWER ACCESS PORTAL</h2>
+        <p class="auth-sub">City of Omak · Eastside Park Illustrated Tourism Suite</p>
+      </div>
+      <div class="auth-body">
+        <p class="auth-instruction">
+          Welcome to the sovereign review portal. Please enter your authorized reviewer credentials to inspect all 13 cartographic styles, explore athletic specifications, and collaborate with the Trillionaires AI Agent Swarm.
+        </p>
+        <form id="auth-form" class="auth-form">
+          <div class="auth-input-group">
+            <label for="reviewer-name-input">Reviewer Identity:</label>
+            <div class="reviewer-quick-select" id="reviewer-quick-select">
+              <button type="button" class="quick-name-btn active" data-name="Sarah">👩‍💼 Sarah (City of Omak)</button>
+              <button type="button" class="quick-name-btn" data-name="Paula">🏛️ Paula (LTAC)</button>
+              <button type="button" class="quick-name-btn" data-name="John">🛠️ John (Lead)</button>
+            </div>
+            <input type="text" id="reviewer-name-input" placeholder="e.g. Sarah or Paula" value="Sarah" required autocomplete="name">
+          </div>
+          <div class="auth-input-group">
+            <label for="reviewer-pass-input">Reviewer Passcode <span class="passcode-subnote">(Same for Sarah &amp; Paula)</span>:</label>
+            <input type="password" id="reviewer-pass-input" placeholder="Enter passcode..." autocomplete="current-password">
+          </div>
+          <div id="auth-error-msg" class="auth-error" style="display: none;"></div>
+          <button type="submit" class="action-btn auth-submit-btn" id="btn-submit-auth">
+            🔓 Unlock Portal &amp; Reviewer Suite
+          </button>
+          <button type="button" class="quick-guest-btn" id="btn-quick-guest-unlock" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #7dd3fc; padding: 11px; border-radius: 8px; font-weight: 700; width: 100%; margin-top: 10px; cursor: pointer;">
+            ⚡ Instant Reviewer &amp; Stakeholder Demo Access
+          </button>
+        </form>
+        <div class="auth-footer-note">
+          🔒 Protected by Trillionaires AI · Instant Stakeholder Demo Enabled
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Swarm Chat Launcher -->
+  <div id="swarm-chat-launcher">
+    <button id="btn-open-chat" class="chat-launcher-btn" aria-label="Open Swarm Chat & Comments">
+      <span class="chat-icon">💬</span>
+      <span class="chat-btn-label">Chat with Chief &amp; Review</span>
+      <span class="chat-pulse-pip"></span>
+    </button>
+  </div>
+
+  <!-- Swarm Chat & Reviewer Comments Drawer -->
+  <div id="swarm-chat-drawer" class="chat-drawer-closed" aria-hidden="true">
+    <div class="chat-drawer-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">★</div>
+        <div>
+          <div class="chat-agent-name">Chief · Swarm Concierge</div>
+          <div class="chat-status-indicator">
+            <span class="status-dot"></span> Live Project Agent · Eastside Park Suite
+          </div>
+        </div>
+      </div>
+      <button id="btn-close-chat" class="close-chat-btn" aria-label="Close Chat">✕</button>
+    </div>
+
+    <!-- Tab Strip: Chat vs Reviewer Comments -->
+    <div class="chat-tab-strip">
+      <button class="chat-tab-btn active" id="tab-btn-chat" data-tab="chat">💬 Live Chat</button>
+      <button class="chat-tab-btn" id="tab-btn-comments" data-tab="comments">📝 Reviewer Comments (<span id="comments-count">1</span>)</button>
+    </div>
+
+    <!-- Panel 1: Live Chat -->
+    <div class="chat-panel" id="panel-chat">
+      <div class="chat-messages" id="chat-messages-container">
+        <div class="chat-bubble agent-bubble" id="initial-agent-greeting">
+          <div class="bubble-header">Chief · Lead Systems Architect</div>
+          <div class="bubble-body" id="initial-agent-greeting-body">
+            Hello Sarah! Welcome to the Eastside Park &amp; Downtown Omak project. I am Chief, leading the Trillionaires AI Agent Swarm. You can inspect all 12 map styles, review the satellite-accurate athletic layout (Style 11), explore the Roblox 3D Voxel map (Style 12), or ask me anything about the ballfields, Suicide Race history, and downtown business placements. You can also leave your feedback and comments directly here!
+          </div>
+          <div class="bubble-time">Just now</div>
+        </div>
+      </div>
+
+      <form id="chat-input-form" class="chat-form">
+        <input type="text" id="chat-text-input" placeholder="Ask Chief a question or leave feedback..." autocomplete="off">
+        <button type="submit" id="btn-send-chat" class="chat-send-btn" aria-label="Send">➤</button>
+      </form>
+    </div>
+
+    <!-- Panel 2: Reviewer Comments & Feedback Notes -->
+    <div class="chat-panel" id="panel-comments" style="display: none;">
+      <div class="comments-scroll-area" id="comments-list-container">
+        <!-- Dynamic comments rendered here -->
+      </div>
+
+      <form id="comment-input-form" class="comment-form">
+        <div class="comment-form-row">
+          <label for="comment-style-select">Map Option:</label>
+          <select id="comment-style-select">
+            <option value="Option 11 (Satellite-Accurate)" selected>Option 11 (Satellite-Accurate)</option>
+            <option value="Option 3 (Downtown &amp; Highways)">Option 3 (Downtown &amp; Highways)</option>
+            <option value="Option 1 (Engraved Certificate)">Option 1 (Engraved Certificate)</option>
+            <option value="Option 7 (Niehues Trail Map)">Option 7 (Niehues Trail Map)</option>
+            <option value="Option 8 (Colville Heritage)">Option 8 (Colville Heritage)</option>
+            <option value="General Feedback">General / All Options</option>
+          </select>
+        </div>
+        <textarea id="comment-textarea" placeholder="Write your review notes or suggested adjustments for John and the team..." rows="3"></textarea>
+        <button type="submit" class="action-btn comment-submit-btn" id="btn-submit-comment">
+          ✍️ Post Reviewer Comment
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="portal.js"></script>
+</body>
+</html>

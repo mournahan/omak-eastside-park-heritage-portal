@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eastside Park Official Tri-Fold Visitor Guide &amp; Illustrated Map</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #c99738;
+      --deep-brown: #24170d;
+      --crimson: #881337;
+      --forest: #14532d;
+      --parchment: #fdfbf7;
+      --card-bg: #f9f5ea;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #2a1f18;
+      color: #24170d;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Print Screen Navigation Bar */
+    .screen-header {
+      background: #170d06;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1100px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .screen-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    .screen-header .btn-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #170d06;
+      border: 1px solid #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #dfb256;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* --------------------------------------------------------
+       PRINT SPREAD CONTAINERS (US Letter / 11x8.5 or Tabloid 17x11)
+       -------------------------------------------------------- */
+    .sheet-wrapper {
+      margin-bottom: 30px;
+    }
+
+    .sheet-label {
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      margin-bottom: 8px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .trifold-sheet {
+      width: 11in;
+      height: 8.5in;
+      background: var(--parchment);
+      border: 4px solid var(--deep-brown);
+      border-radius: 4px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Visual Folding Line Guides */
+    .trifold-sheet::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 33.333%;
+      width: 1px;
+      border-left: 1px dashed rgba(133, 77, 14, 0.35);
+      z-index: 10;
+    }
+
+    .trifold-sheet::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 66.666%;
+      width: 1px;
+      border-left: 1px dashed rgba(133, 77, 14, 0.35);
+      z-index: 10;
+    }
+
+    .panel {
+      padding: 0.35in 0.3in;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      background-color: var(--parchment);
+    }
+
+    .panel-inner-border {
+      border: 1.5px solid #d4a340;
+      height: 100%;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #fffdf9;
+    }
+
+    /* Typography & Branding */
+    h2.panel-title {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--deep-brown);
+      text-align: center;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    h3.section-header {
+      font-family: 'Cinzel', serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--crimson);
+      margin-top: 8px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      font-size: 9.5px;
+      line-height: 1.45;
+      color: #44403c;
+      margin-bottom: 6px;
+    }
+
+    /* --------------------------------------------------------
+       SIDE A: OUTSIDE SPREAD
+       Panel 1: Inside Flap (Omak Economic Transition)
+       Panel 2: Back Cover (Visitor Center & QR Portal)
+       Panel 3: Front Cover (Suicide Hill Crest & Title)
+       -------------------------------------------------------- */
+
+    /* Panel 1: Inside Flap */
+    .timeline-item {
+      background: #fbf6ec;
+      border-left: 3px solid var(--gold);
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .timeline-item strong {
+      display: block;
+      font-size: 10px;
+      color: var(--deep-brown);
+      font-family: 'Cinzel', serif;
+    }
+
+    /* Panel 2: Back Cover */
+    .qr-box {
+      background: #1c1208;
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #ffffff;
+      margin: 10px 0;
+    }
+
+    .qr-code-art {
+      width: 60px;
+      height: 60px;
+      background: #ffffff;
+      padding: 4px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .contact-card {
+      background: #f5f5f4;
+      border: 1px solid #d6d3d1;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    /* Panel 3: Front Cover */
+    .front-cover {
+      background: radial-gradient(circle at center, #fffdf8 0%, #f7efdc 100%);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cover-seal {
+      width: 65px;
+      height: 65px;
+      background: radial-gradient(circle, #f3d37a 0%, #c99738 70%, #854d0e 100%);
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      margin-bottom: 8px;
+    }
+
+    .cover-main-title {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--deep-brown);
+      letter-spacing: 2px;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .cover-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 12px;
+      color: #78350f;
+      margin-bottom: 12px;
+    }
+
+    .cover-art-frame {
+      width: 100%;
+      height: 170px;
+      border: 2px solid var(--deep-brown);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #170d06;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cover-art-frame svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cover-footer {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: var(--deep-brown);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* --------------------------------------------------------
+       SIDE B: INSIDE SPREAD
+       Panels 4, 5, 6: The Full Panoramic Map & Field Directory
+       -------------------------------------------------------- */
+    .inside-sheet {
+      grid-template-columns: 1.8fr 1.2fr;
+    }
+
+    .inside-map-section {
+      border-right: 1.5px solid var(--gold);
+      padding: 0.25in;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #faf6ed;
+    }
+
+    .inside-map-container {
+      width: 100%;
+      height: 90%;
+      border: 2px solid var(--deep-brown);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      background: #fdfaf3;
+    }
+
+    .inside-directory-section {
+      padding: 0.25in 0.3in;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .field-card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field-mini-card {
+      background: #ffffff;
+      border: 1px solid #e7e5e4;
+      border-left: 3px solid var(--crimson);
+      padding: 4px 8px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .field-mini-card h4 {
+      font-size: 9.5px;
+      color: var(--deep-brown);
+      font-family: 'Cinzel', serif;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .field-mini-card p {
+      font-size: 8px;
+      color: #57534e;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    /* --------------------------------------------------------
+       PRINT SPECIFIC STYLES
+       -------------------------------------------------------- */
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+
+      .screen-header {
+        display: none !important;
+      }
+
+      .sheet-label {
+        display: none !important;
+      }
+
+      .sheet-wrapper {
+        margin: 0;
+        page-break-after: always;
+      }
+
+      .trifold-sheet {
+        border: none;
+        box-shadow: none;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      @page {
+        size: landscape;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Only Navigation -->
+  <div class="screen-header">
+    <div>
+      <h1>EASTSIDE PARK · OFFICIAL TRI-FOLD PRINT EDITION</h1>
+      <p style="color: #d6d3d1; font-size: 12px;">Formatted for Double-Sided Landscape Printing (8.5×11" Letter or 11×17" Tabloid)</p>
+    </div>
+    <div class="btn-group">
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <label for="brochure-map-select" style="color: #f3d37a; font-size: 11px; font-weight: bold;">INSIDE MAP STYLE:</label>
+        <select id="brochure-map-select" style="background: #24170d; color: #fef08a; border: 1.5px solid var(--gold); padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 12px;">
+          <option value="public/map_option_11.jpg" selected>★ 11. Satellite-Accurate Master Survey (1:1 Match)</option>
+          <option value="public/map_option_12.jpg">🎮 12. Roblox 3D Voxel Adventure Obby</option>
+          <option value="public/map_option_3.jpg">3. Downtown Businesses &amp; Highways</option>
+          <option value="public/map_option_7.jpg">7. James Niehues Hand-Painted Ski Trail Panorama</option>
+          <option value="public/map_option_8.jpg">8. Colville Tribal &amp; Salmon River Heritage</option>
+          <option value="public/map_option_9.jpg">9. Mid-Century 1950s Road Trip Vacation Guide</option>
+          <option value="public/map_option_10.jpg">10. Architectural Master Blueprint Kiosk</option>
+          <option value="public/map_option_1.jpg">1. Sovereign Engraved Certificate</option>
+          <option value="public/map_option_2.jpg">2. WPA National Park Serigraph</option>
+          <option value="public/map_option_4.jpg">4. Sunset Recreation &amp; Twilight Glow</option>
+          <option value="public/map_option_5.jpg">5. Frontier Hand-Tooled Leather</option>
+          <option value="public/map_option_6.jpg">6. 1890s Panoramic Aero-View Lithograph</option>
+        </select>
+      </div>
+      <a href="index.html" class="btn btn-secondary">⬅ Interactive Web Map</a>
+      <button onclick="window.print()" class="btn btn-primary">🖨️ Print / Save to PDF</button>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       SIDE A: OUTSIDE SPREAD (Fold 1: Flap, Fold 2: Back, Fold 3: Cover)
+       ======================================================== -->
+  <div class="sheet-wrapper">
+    <div class="sheet-label">SIDE A (OUTSIDE OF BROCHURE — PANELS 1, 2, 3)</div>
+    <div class="trifold-sheet">
+      
+      <!-- Panel 1: Inside Flap (Omak Economic Transition Narrative) -->
+      <div class="panel">
+        <div class="panel-inner-border">
+          <div>
+            <h2 class="panel-title">THE STORY OF OMAK</h2>
+            <p style="font-family: 'Playfair Display', serif; font-style: italic; color: #78350f; font-size: 9.5px; margin-bottom: 8px;">
+              "From pioneer mining trails to timber and orchards—now a thriving Pacific Northwest tourism frontier."
+            </p>
+
+            <div class="timeline-item">
+              <strong>1888–1910: Mining Frontier</strong>
+              <p>Silver rushes in nearby Ruby City and Conconully forged early wagon roads across the Okanogan River.</p>
+            </div>
+
+            <div class="timeline-item">
+              <strong>1921–1970: Timber &amp; The Big Mill</strong>
+              <p>J.C. Biles and Nate Coleman founded Biles-Coleman Lumber Co., making Omak a global timber and rail center.</p>
+            </div>
+
+            <div class="timeline-item">
+              <strong>1930–2010: Apple Capital</strong>
+              <p>Federal irrigation transformed the valley into world-famed Red Delicious and cherry orchards.</p>
+            </div>
+
+            <div class="timeline-item" style="border-left-color: var(--crimson);">
+              <strong style="color: var(--crimson);">Today: The Tourism Frontier</strong>
+              <p>Omak now reinvests Lodging Tax funds directly into sports tourism, the historic Stampede, and river recreation.</p>
+            </div>
+          </div>
+
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 5px; border-radius: 4px; font-size: 8px; color: #166534; line-height: 1.3;">
+            <strong>Funded by Municipal Lodging Tax (RCW 67.28):</strong> Reinvesting Hotel-Motel revenues directly into Eastside Park recreation infrastructure.
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Back Cover (Downtown Commerce, Lodging, Wayfinding & QR Portal) -->
+      <div class="panel">
+        <div class="panel-inner-border">
+          <div>
+            <h2 class="panel-title">DOWNTOWN DINING &amp; LODGING</h2>
+            
+            <p style="font-size: 8px; color: #78350f; font-weight: bold; margin-bottom: 4px;">
+              🌉 3-Min Walk West Across Central Avenue Bridge:
+            </p>
+
+            <div style="font-size: 7.8px; line-height: 1.35; color: #374151; margin-bottom: 6px;">
+              <p>• <strong>Breadline Cafe:</strong> 102 S Ash · Scratch sourdough bakery, soups, organic espresso</p>
+              <p>• <strong>Mirage Theater:</strong> 101 S Main · Historic Art Deco neon marquee &amp; 3 digital cinema screens</p>
+              <p>• <strong>Magoo's Diner:</strong> 24 N Main · Classic burgers, hand-spun shakes &amp; sports lounge</p>
+              <p>• <strong>El Patron Mexican:</strong> 3 N Main · Authentic family dining, sizzling fajitas &amp; margaritas</p>
+              <p>• <strong>Visitor Center / Chamber:</strong> 401 Stampede Dr · Free RV parking, trail maps &amp; brochures</p>
+            </div>
+
+            <h3 class="section-header" style="font-size: 8.5px; margin-top: 4px; border-bottom: 1px solid #d4a340; padding-bottom: 2px;">
+              🏨 Lodging Tax Partners (LTAC) &amp; Highways
+            </h3>
+            <div style="font-size: 7.8px; line-height: 1.35; color: #374151; margin-bottom: 6px;">
+              <p>• <strong>Best Western Peppertree Inn:</strong> 820 N Hwy 97 · Heated indoor pool &amp; hot buffet</p>
+              <p>• <strong>Omak Inn:</strong> 912 N Senna St (SR-215) · Comfortable team lodging &amp; pool</p>
+              <p>• <strong>12 Tribes Resort &amp; Casino:</strong> 28968 US-97 · Luxury boutique hotel &amp; Camas Spa</p>
+              <p>• <strong>Highways:</strong> US-97 (North to Canada / South to Wenatchee) · SR-215 Scenic Bypass</p>
+            </div>
+
+            <div class="qr-box">
+              <div class="qr-code-art">
+                <!-- High-contrast QR SVG -->
+                <svg viewBox="0 0 50 50" width="100%" height="100%">
+                  <rect width="50" height="50" fill="#ffffff" />
+                  <rect x="4" y="4" width="14" height="14" fill="#000000" />
+                  <rect x="7" y="7" width="8" height="8" fill="#ffffff" />
+                  <rect x="9" y="9" width="4" height="4" fill="#000000" />
+                  <rect x="32" y="4" width="14" height="14" fill="#000000" />
+                  <rect x="35" y="7" width="8" height="8" fill="#ffffff" />
+                  <rect x="37" y="9" width="4" height="4" fill="#000000" />
+                  <rect x="4" y="32" width="14" height="14" fill="#000000" />
+                  <rect x="7" y="35" width="8" height="8" fill="#ffffff" />
+                  <rect x="9" y="37" width="4" height="4" fill="#000000" />
+                  <rect x="22" y="6" width="4" height="8" fill="#000000" />
+                  <rect x="6" y="22" width="8" height="4" fill="#000000" />
+                  <rect x="22" y="22" width="10" height="10" fill="#000000" />
+                  <rect x="34" y="24" width="8" height="4" fill="#000000" />
+                  <rect x="24" y="36" width="6" height="8" fill="#000000" />
+                  <rect x="36" y="34" width="10" height="10" fill="#000000" />
+                </svg>
+              </div>
+              <div>
+                <div style="font-family: 'Cinzel', serif; font-size: 9.5px; font-weight: bold; color: var(--gold);">LIVING HERITAGE PORTAL</div>
+                <div style="font-size: 7.5px; line-height: 1.35; color: #e5e5e5;">Scan to hear oral histories, tournament brackets, and explore all 10 map options online.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card" style="font-size: 7.5px; padding: 4px;">
+            <strong>Omak Visitor Information Center</strong> · Phone: (509) 826-1170 · omakcity.com<br>
+            Park Address: 701 Central Ave E, Omak, WA 98841 · Reservations: City Public Works
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Front Cover -->
+      <div class="panel">
+        <div class="panel-inner-border front-cover">
+          <div>
+            <div class="cover-seal">★</div>
+            <div style="font-size: 9px; font-weight: bold; letter-spacing: 1.5px; color: var(--gold); text-transform: uppercase;">Official Civic Guide</div>
+            <h1 class="cover-main-title">EASTSIDE PARK</h1>
+            <div class="cover-sub">City of Omak, Washington</div>
+            <div style="font-size: 8px; color: #57534e; letter-spacing: 0.5px;">ELEVATION 840 FT · COLVILLE RESERVATION</div>
+          </div>
+
+          <!-- Illustrated Preview Frame: High-Res Master Illustrated Artwork -->
+          <div class="cover-art-frame">
+            <img src="public/map_option_1.jpg" alt="Master Panorama of Eastside Park and Downtown Omak" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+
+          <div>
+            <p style="font-size: 8.5px; color: #44403c; margin-bottom: 6px;">
+              77 Acres of Premier Athletic Diamonds, Downtown Commerce, The World Famous Suicide Race, and Heritage Grounds.
+            </p>
+            <div class="cover-footer">Cartography by Trillionaires AI</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================
+       SIDE B: INSIDE SPREAD (Continuous Panoramic Map & Detailed Field Directory)
+       ======================================================== -->
+  <div class="sheet-wrapper">
+    <div class="sheet-label">SIDE B (INSIDE SPREAD — FULL PANORAMIC MAP &amp; FIELD DIRECTORY)</div>
+    <div class="trifold-sheet inside-sheet" style="grid-template-columns: 2fr 1fr;">
+      
+      <!-- Left 2 Panels Combined: The Master Vector Illustrated Map -->
+      <div class="inside-map-section">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <h2 style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--deep-brown);">
+              EASTSIDE PARK &amp; DOWNTOWN OMAK VISITOR MAP
+            </h2>
+            <span style="font-size: 8.5px; background: #fef3c7; color: #78350f; font-weight: bold; padding: 2px 6px; border-radius: 4px;">
+              77 ACRES · RIVER OXBOW · DOWNTOWN COMMERCE
+            </span>
+          </div>
+        </div>
+
+        <div class="inside-map-container">
+          <!-- Embed Swappable Master Illustrated Map Artwork -->
+          <img id="brochure-map-img" src="public/map_option_11.jpg" alt="Master Panoramic Map of Eastside Park, Downtown Omak and Highways" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 7.5px; color: #78716c; margin-top: 4px;">
+          <span>★ Downtown Commerce (Left) · Central Ave Bridge · 7 Ballfields · Rodeo Arena · Colville Encampment</span>
+          <span>Official Cartography · City of Omak</span>
+        </div>
+      </div>
+
+      <!-- Right Panel: Detailed Field Directory & Namesake Tributes -->
+      <div class="inside-directory-section">
+        <div>
+          <h2 class="panel-title" style="font-size: 14px;">FIELD &amp; FACILITY DIRECTORY</h2>
+
+          <div class="field-card-grid">
+            <!-- Robbins -->
+            <div class="field-mini-card">
+              <h4><span>1. Joe Robbins Field</span> <span>Little League</span></h4>
+              <p>Youth lighted ballpark with dual-lane batting cages. Honoring mid-century pioneer Joe Robbins who chartered Omak’s first Little League.</p>
+            </div>
+
+            <!-- Pock -->
+            <div class="field-mini-card">
+              <h4><span>2. John Pock Field</span> <span>Youth Minors</span></h4>
+              <p>Developmental diamond across from the pool. Dedicated to booster John Pock who ensured every child had cleats and a glove.</p>
+            </div>
+
+            <!-- McCormick -->
+            <div class="field-mini-card" style="border-left-color: #1e3a8a;">
+              <h4><span>3. Ross McCormick Field</span> <span>High School</span></h4>
+              <p>Varsity baseball diamond with press box and bleachers. Commemorating legendary coach Ross McCormick.</p>
+            </div>
+
+            <!-- Rowe -->
+            <div class="field-mini-card" style="border-left-color: #1e3a8a;">
+              <h4><span>4. Jack Rowe Field</span> <span>Tournament</span></h4>
+              <p>Multi-use diamond modernized with an all-weather infield for year-round state and regional tournament play.</p>
+            </div>
+
+            <!-- Bowden & Buchanon -->
+            <div class="field-mini-card" style="border-left-color: #831843;">
+              <h4><span>5 &amp; 6. Bowden &amp; Buchanon</span> <span>Fastpitch</span></h4>
+              <p>Dedicated high school fastpitch softball diamonds honoring Shirley Bowden and Stephanie Buchanon.</p>
+            </div>
+
+            <!-- Soccer -->
+            <div class="field-mini-card" style="border-left-color: #047857;">
+              <h4><span>North Omak Soccer Complex</span> <span>Fields 1–4</span></h4>
+              <p>Four pristine grass pitches hosting youth leagues, high school matches, and "Kick'N It with the Cops".</p>
+            </div>
+
+            <!-- Precht RV -->
+            <div class="field-mini-card" style="border-left-color: #14532d;">
+              <h4><span>Carl Precht Memorial RV Park</span> <span>68 Sites</span></h4>
+              <p>Shaded by mature Catalpa trees along the river. Honoring pioneer elementary educator and outdoor leader Carl Precht.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: #fffdf5; border: 1px solid #e7e5e4; border-radius: 4px; padding: 6px; font-size: 8px; line-height: 1.4; color: #57534e; text-align: center;">
+          Tournament Bookings &amp; Pavillion Rentals: City of Omak (509) 826-1170 · www.omakcity.com
+        </div>
+      </div>
+
+    </div>
+  <script>
+    const mapSelect = document.getElementById('brochure-map-select');
+    const mapImg = document.getElementById('brochure-map-img');
+    if (mapSelect && mapImg) {
+      mapSelect.addEventListener('change', function(e) {
+        mapImg.src = e.target.value;
+      });
+    }
+  </script>
+</body>
+</html>
